@@ -24,7 +24,7 @@ from django.utils.dateparse import parse_datetime
 from speedpage.models import *
 from django.core import serializers
 
-default_file = '/soft/warehouse-1.0/PROD/apps/RouteSpeedpage/speedpage.csv'
+default_file = '/soft/warehouse-apps-1.0/Manage-Speedpage/var/speedpage.csv'
 #snarfing the whole database is not the way to do it, for this anyway)
 with open(default_file, 'r') as my_file:
     csv_source_file = csv.DictReader(my_file)

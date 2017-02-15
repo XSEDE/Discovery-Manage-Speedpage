@@ -2,10 +2,11 @@
 LOCATION=/soft/warehouse-apps-1.0/Manage-Speedpage/
 PRODLOC=$LOCATION/PROD/
 CACHE=$LOCATION/var
-$PRODLOC/sbin/cache.speedpage.pl --cache=$CACHE
 
 DATE=`date +%Y-%m-%dT%H:%M:%SZ`
 #LOG=/soft/info/logs/outages.log
 LOG=$CACHE/speedpage.log
+echo $DATE >> $LOG
+$PRODLOC/sbin/cache.speed.pl --cache=$CACHE >> $LOG 2>&1
 
 $PRODLOC/sbin/route_speedpage.sh

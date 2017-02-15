@@ -18,7 +18,7 @@ my $DBPASS = 'xsedegridinfo';
 my $DBHOST = 'quipu.psc.xsede.org'; 
 my $DBPORT = '3306'; 
 
-my $mapCSV = '/soft/info/cache/V4tgcdbRP/tgresources.csv';
+my $mapCSV = '/soft/warehouse-apps-1.0/Manage-XDCDB/var/tgresources.csv';
 open DB,"<$mapCSV" or
   die "Failed to open $mapCSV";
 my %name_to_id;

@@ -25,16 +25,6 @@ from speedpage.models import *
 from django.core import serializers
 from processing_status.process import ProcessingActivity
 
-class UTC(tzinfo):
-    def utcoffset(self, dt):
-        return timedelta(0)
-    def tzname(self, dt):
-        return 'UTC'
-    def dst(self, dt):
-        return timedelta(0)
-utc = UTC()
-
-
 #default_file = '/soft/warehouse-apps-1.0/Manage-Speedpage/var/speedpage.csv'
 default_file = './speedpage.csv'
 #snarfing the whole database is not the way to do it, for this anyway)
@@ -46,15 +36,6 @@ for obj in dbstate:
     dbhash[str(obj['fields']['tstamp'])+str(obj['fields']['src_url'])+str(obj['fields']['dest_url'])]=obj
 with open(default_file, 'r') as my_file:
     csv_source_file = csv.DictReader(my_file)
-    #Start ProcessActivity
-    pa_application=os.path.basename(__file__)
-    pa_function='Warehouse_Speedpage'
-    pa_topic = 'Speedpage'
-# Updated on 2017-10-11 by JP
-#    pa_id = pa_topic+":"+str(datetime.now(utc))
-    pa_id = pa_topic
-    pa_about = 'project_affiliation=XSEDE'
-    pa = ProcessingActivity(pa_application, pa_function, pa_id , pa_topic, pa_about)
     for row in csv_source_file:
         #print row
         #InDBAlready = ProjectResource.objects.filter(**row)
@@ -74,6 +55,12 @@ with open(default_file, 'r') as my_file:
 
             for obj in modelobjects:
                 obj.save()
+                pa_application=os.path.basename(__file__)
+                pa_function='Warehouse_Speedpage'
+                pa_topic = 'Speedpage'
+                pa_id = pa_topic+":"+row['tstamp']+row['src_url']+row['dest_url']
+                pa_about = 'project_affiliation=XSEDE'
+                pa = ProcessingActivity(pa_application, pa_function, pa_id , pa_topic, pa_about)
 
     #print dbhash.keys()
     #print len(dbhash.keys())
@@ -81,4 +68,4 @@ with open(default_file, 'r') as my_file:
     for key in dbhash.keys():
         #print dbhash[key]
         speedpage.objects.filter(pk=dbhash[key]['pk']).delete()
-    pa.FinishActivity(0, "")
+

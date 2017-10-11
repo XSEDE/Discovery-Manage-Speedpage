@@ -50,7 +50,9 @@ with open(default_file, 'r') as my_file:
     pa_application=os.path.basename(__file__)
     pa_function='Warehouse_Speedpage'
     pa_topic = 'Speedpage'
-    pa_id = pa_topic+":"+str(datetime.now(utc))
+# Updated on 2017-10-11 by JP
+#    pa_id = pa_topic+":"+str(datetime.now(utc))
+    pa_id = pa_topic
     pa_about = 'project_affiliation=XSEDE'
     pa = ProcessingActivity(pa_application, pa_function, pa_id , pa_topic, pa_about)
     for row in csv_source_file:

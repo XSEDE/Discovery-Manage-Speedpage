@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import pdb
 import pprint
 import os
 import pwd
@@ -34,9 +35,11 @@ class UTC(tzinfo):
         return timedelta(0)
 utc = UTC()
 
+pdb.set_trace()
 
 #default_file = '/soft/warehouse-apps-1.0/Manage-Speedpage/var/speedpage.csv'
-default_file = './speedpage.csv'
+#default_file = './speedpage.csv'
+default_file = sys.argv[1]
 #snarfing the whole database is not the way to do it, for this anyway)
 databasestate = serializers.serialize("json", speedpage.objects.all())
 dbstate = json.loads(databasestate)

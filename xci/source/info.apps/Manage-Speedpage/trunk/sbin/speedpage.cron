@@ -1,11 +1,12 @@
 #!/bin/sh
-LOCATION=/soft/warehouse-apps-1.0/Manage-Speedpage/
-PRODLOC=$LOCATION/PROD/
-CACHE=$LOCATION/var
+APP_BASE=/soft/warehouse-apps-1.0/Manage-Speedpage/
+APP_SOURCE=${APP_BASE}/PROD/
+APP_CACHE=${APP_BASE}/var
 
 DATE=`date +%Y-%m-%dT%H:%M:%SZ`
-LOG=$CACHE/speedpage.log
-echo $DATE >> $LOG
-$PRODLOC/sbin/cache.speed.pl --cache=$CACHE >> $LOG 2>&1
+LOG=${APP_CACHE}/speedpage.log
 
-$PRODLOC/sbin/route_speedpage.sh $CACHE/speedpage.csv
+echo $DATE >> $LOG
+${APP_SOURCE}/sbin/cache.speed.pl --cache=${APP_CACHE} >> $LOG 2>&1
+
+${APP_SOURCE}/sbin/route_speedpage.sh ${APP_CACHE}/speedpage.csv

@@ -14,11 +14,12 @@ my $DBNAME = 'speedpage';
 #my $DBUSER = 'guest';
 #my $DBPASS = 'tggridinfo'; 
 my $DBUSER = 'xsede';
-my $DBPASS = 'xsedegridinfo'; 
+my $DBPASS = '<SPEEDPASS>'; 
 my $DBHOST = 'quipu.psc.xsede.org'; 
 my $DBPORT = '3306'; 
 
-my $mapCSV = '/soft/warehouse-apps-1.0/Manage-XDCDB/var/tgresources.csv';
+#my $mapCSV = '/soft/warehouse-apps-1.0/Manage-XDCDB/var/tgresources.csv';
+my $mapCSV = '/soft/warehouse-apps-1.0/Manage-XDCDB-Resources/var/tgresources.csv';
 open DB,"<$mapCSV" or
   die "Failed to open $mapCSV";
 my %name_to_id;

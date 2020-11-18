@@ -14,7 +14,7 @@ my $DBNAME = 'speedpage';
 #my $DBUSER = 'guest';
 #my $DBPASS = 'tggridinfo'; 
 my $DBUSER = 'xsede';
-my $DBPASS = 'xsedegridinfo'; 
+my $DBPASS = '<SPEEDPASS>'; 
 my $DBHOST = 'quipu.psc.xsede.org'; 
 my $DBPORT = '3306'; 
 
